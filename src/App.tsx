@@ -943,7 +943,7 @@ export default function App() {
                 <span>{DATA.university}</span>
               </div>
               <a 
-                href="/resume.pdf" 
+                href="resume.pdf" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors flex items-center group/resume"
