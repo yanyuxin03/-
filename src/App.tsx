@@ -1,4 +1,5 @@
 // Final adjustments for GitHub Pages deployment (Repo: https://yanyuxin03.github.io/-/)
+// Deployment Fix: v2.0.1
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence, useDragControls } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
@@ -944,7 +945,7 @@ export default function App() {
                 <span>{DATA.university}</span>
               </div>
               <a 
-                href={`${import.meta.env.BASE_URL}resume.pdf`} 
+                href="resume.pdf" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors flex items-center group/resume"
