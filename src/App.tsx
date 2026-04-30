@@ -1,3 +1,4 @@
+// Fixed asset paths for GitHub Pages deployment
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence, useDragControls } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
