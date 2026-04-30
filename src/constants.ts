@@ -1,19 +1,16 @@
-const base = import.meta.env.BASE_URL;
+const img1 = "images/icons/profile1.png";
+const img2 = "images/icons/profile2.png";
+const img3 = "images/icons/profile3.png";
+const img4 = "images/icons/profile4.png";
 
-const img1 = `${base}images/icons/profile1.png`;
-const img2 = `${base}images/icons/profile2.png`;
-const img3 = `${base}images/icons/profile3.png`;
-const img4 = `${base}images/icons/profile4.png`;
-
-// Project Covers - Using absolute paths with BASE_URL
-const cover1 = `${base}images/鸭嘴钳.png`;
-const cover2 = `${base}images/荆楚古邑.jpg`;
-const cover3 = `${base}images/入画入梦.jpeg`;
-const cover4 = `${base}images/校园系列.png`;
-const cover5 = `${base}images/世界自闭症日.png`;
-const cover6 = "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80"; // Missing upload for Item 6
-const cover7 = `${base}images/陈国恩学长.png`;
-const cover8 = `${base}images/摘一颗春天的诗.png`;
+const cover1 = "images/鸭嘴钳.png";
+const cover2 = "images/荆楚古邑.jpg";
+const cover3 = "images/入画入梦.jpeg";
+const cover4 = "images/校园系列.png";
+const cover5 = "images/世界自闭症日.png";
+const cover6 = "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80"; 
+const cover7 = "images/陈国恩学长.png";
+const cover8 = "images/摘一颗春天的诗.png";
 
 export const DATA = {
   name: "颜雨欣",
@@ -45,7 +42,7 @@ export const DATA = {
         company: "湖南大学校团委宣传部",
         role: "记者、编辑",
         time: "2021.10 - 2023.09",
-        icon: `${base}images/icons/湖南大学校团委.png`,
+        icon: "images/icons/湖南大学校团委.png",
         details: [
           "参与湖南大学校团委所属公众号“湖大青年”的推文宣传策划、文案撰写与图文设计等相关宣传工作。",
           "内容创作与宣发：任职期间结合校园活动、校园热点事件策划撰写推文涵盖校园通讯、人物深度、新媒体短讯等多种类型稿件，所策划并撰写推文共计16篇，累计阅读量超5w+。其中作为负责人策划与采写的作品《陪伴是最“长琦”的告白》获湖南大学第六届新闻奖通讯类一等奖、《陈国恩学长与令人心动的湖大》获湖南大学第七届大学生网络文化节网络创新类二等奖。",
@@ -56,7 +53,7 @@ export const DATA = {
         company: "长沙天符宫遗产价值口述史研究",
         role: "遗产价值挖掘组核心成员",
         time: "2023.06 - 2024.07",
-        icon: `${base}images/icons/长沙天符宫.png`,
+        icon: "images/icons/长沙天符宫.png",
         details: [
           "项目调研与资料整合：参与前期的文献收集研究，总结出超6万字文献线索。同时参与相关人物的口述史访谈与资料整理工作，收集到超10万字访谈材料，为该文物的修复设计工作提供重要史料参考。该项目获市级文保部门的高度关注，在本项目组的史料支持下，有关部门已将长沙天符宫升为市级文保单位。",
           "成果产出：据该项目研究成果，本人以第三作者身份所撰写的学术论文《口述史方法在低级别文物遗产价值建构中的应用——以长沙天符宫的保护与研究为例》已入选“2024年第七届中国建筑口述史学术研讨会”。"
@@ -68,7 +65,7 @@ export const DATA = {
         company: "湖南日报社",
         role: "文旅体频道实习记者",
         time: "2023.06 - 2023.08",
-        icon: `${base}images/icons/湖南日报.png`,
+        icon: "images/icons/湖南日报.png",
         details: [
           "参与湖南日报及新湖南客户端日常新闻报道的采写拍摄，协助进行专题报道的策划、资料整理与采访工作。",
           "实习期间参与湖南日报推出的“走读湖湘书院”“文学里的村庄”等专题报道的采写工作，其中参与报道的封面文章《千年书院，其命惟新》在新湖南客户端获得36w+阅读量。",
@@ -79,7 +76,7 @@ export const DATA = {
         company: "芒果TV",
         role: "大会员中心会员权益运营实习生",
         time: "2025.01 - 2025.04",
-        icon: `${base}images/icons/芒果TV.png`,
+        icon: "images/icons/芒果TV.png",
         details: [
           "研策追踪：完成AI 角色包、亲密会员等新项目竞品调研，收集行业动态与用户反馈，提炼差异化运营方向并提供策略支撑;对接权益商品品牌方，完成信息整理、页面撰写与平台上架，同步收集商品曝光数据。",
           "生态运营：进行会员黑产筛查取证，整理违规数据与证据并同步公司法务部，维护会员生态;对多档综艺线下录制的会员观众进行资格评估与现场对接，协调多方资源保障线下会员权益落地。"

@@ -182,7 +182,7 @@
 
 @font-face {
   font-family: 'Muyao';
-  src: url('/-/fonts/Muyao.ttf') format('truetype');
+  src: url('/fonts/Muyao.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
