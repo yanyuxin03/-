@@ -37,9 +37,11 @@ jobs:
           node-version: 20
           cache: 'npm'
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build
         run: npm run build:gh
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY || 'placeholder' }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
