@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Playpen+Sans:wght@400;600;800&family=Zhi+Mang+Xing&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Lora", serif;
+  --font-curvy: "Zhi Mang Xing", cursive;
+  --font-muyao: "Muyao", cursive;
+  --font-playpen: "Playpen Sans", cursive;
+  
+  --color-primary: #4A627A; 
+  --color-surface: #F1F4F7; 
+  --color-card: #F9FBFC;
+  --color-border: #DDE2E7;
+  --color-text-main: #2C3E50;
+  --color-text-muted: #5D6D7E;
+
+  @keyframes dash {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-8px); }
+  }
+}
+
+.animate-shake {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-text-main font-sans antialiased relative;
+  }
+  
+  /* Paper Texture Overlays */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 98;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.transparenttextures.com/patterns/crumpled-paper.png");
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 99;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif italic tracking-tight;
+  }
+}
+
+/* Sticker Effect - Thick white stroke for transparent PNGs */
+.sticker-effect {
+  filter: 
+    drop-shadow(4px 0 0 white) 
+    drop-shadow(-4px 0 0 white) 
+    drop-shadow(0 4px 0 white) 
+    drop-shadow(0 -4px 0 white)
+    drop-shadow(4px 4px 0 white)
+    drop-shadow(-4px -4px 0 white)
+    drop-shadow(4px -4px 0 white)
+    drop-shadow(-4px 4px 0 white)
+    drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
+}
+
+.chalk-text {
+  font-family: var(--font-curvy);
+  @apply fill-text-main;
+}
+
+.chalk-text-shadow {
+  font-family: var(--font-curvy);
+  fill: rgba(0,0,0,0.05);
+}
+
+.contact-emoji {
+  filter: grayscale(1) opacity(0.4);
+  @apply mr-3 inline-block scale-100 align-middle;
+}
+
+.tape {
+  @apply absolute h-10 w-32 bg-white/30 backdrop-blur-[2px] border border-white/20 shadow-sm z-20;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Natural Tones specific utilities */
+.glass-card {
+  @apply bg-card border border-border rounded-[32px] transition-all duration-500;
+}
+
+.markdown-body img {
+  @apply rounded-xl border border-border my-8 w-full max-w-4xl mx-auto shadow-sm transition-transform duration-500 hover:scale-[1.01];
+}
+
+.markdown-body em {
+  @apply text-sm text-text-muted/70 block text-center -mt-6 mb-8 italic;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 10px;
+}
+
+.markdown-body h3 {
+  @apply text-2xl font-serif italic font-bold text-text-main mt-12 mb-6;
+}
+
+.markdown-body p {
+  @apply text-lg text-text-muted leading-relaxed mb-6 font-serif;
+}
+
+.markdown-body ul {
+  @apply list-disc list-outside ml-6 mb-6 space-y-2 text-text-muted;
+}
+
+.markdown-body blockquote {
+  @apply border-l-4 border-primary/20 pl-6 italic text-text-muted/80 my-8;
+}
+
+/* Flip Card Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@font-face {
+  font-family: 'Muyao';
+  src: url('/fonts/Muyao.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
