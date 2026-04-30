@@ -1,4 +1,4 @@
-// Fixed asset paths for GitHub Pages deployment
+// Final adjustments for GitHub Pages deployment (Repo: https://yanyuxin03.github.io/-/)
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence, useDragControls } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
