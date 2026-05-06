@@ -6,6 +6,7 @@
   --font-serif: "Lora", serif;
   --font-curvy: "Zhi Mang Xing", cursive;
   --font-muyao: "Muyao", cursive;
+  --font-xihuan: "Xihuan", cursive;
   --font-playpen: "Playpen Sans", cursive;
   
   --color-primary: #4A627A; 
@@ -30,6 +31,19 @@
     50% { transform: translateX(8px); }
     75% { transform: translateX(-8px); }
   }
+
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll linear infinite;
+}
+
+.pause-scroll {
+  animation-play-state: paused !important;
 }
 
 .animate-shake {
@@ -183,6 +197,14 @@
 @font-face {
   font-family: 'Muyao';
   src: url('/fonts/Muyao.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Xihuan';
+  src: url('/fonts/喜欢体.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

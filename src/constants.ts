@@ -36,6 +36,7 @@ export const DATA = {
     "第六届新闻奖通讯类一等奖",
     "第七届大学生网络文化节网络创新类二等奖"
   ],
+  worldImages: [],
   experiences: {
     campus: [
       {
