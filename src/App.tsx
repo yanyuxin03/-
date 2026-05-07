@@ -671,8 +671,8 @@ export default function App() {
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         ctx?.drawImage(img, 0, 0, width, height);
-        // Using lower quality (0.5) to maximize storage capacity
-        resolve(canvas.toDataURL('image/jpeg', 0.5));
+        // Using WebP format to preserve transparency while maintaining good compression
+        resolve(canvas.toDataURL('image/webp', 0.6));
       };
       img.onerror = () => resolve(base64Str); // Fallback to original if error
     });
