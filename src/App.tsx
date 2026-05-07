@@ -31,7 +31,8 @@ import {
   Unlock,
   Lock,
   Type,
-  FileText
+  FileText,
+  MousePointerClick
 } from 'lucide-react';
 import { DATA } from './constants';
 
@@ -964,8 +965,8 @@ export default function App() {
     const defaults = {
       heroTitle: `Hi！我是${DATA.name}`,
       heroSubtitle: DATA.title,
-      aboutHeading: "热爱探索边界, 透过镜头与文字 重构真实.",
-      aboutQuote: "我是一名就读于湖南大学新闻学专业的创作者。在媒体变革的浪潮中，我更倾向于挖掘冰山下的真实。无论是深度调查报道，还是新媒体视角的交互实验，每一个项目都是我对世界的一次提问。",
+      aboutHeading: "核心能力",
+      aboutQuote: "内容创作：熟悉公众号、B 站、小红书等新媒体平台内容逻辑，可独立完成选题策划、文案撰写、图文与短视频内容产出，具备从创意构思到宣发落地的全链路执行能力，擅长结合热点打造高传播内容，精准把握用户偏好。\n\n市场调研与活动执行：具备竞品分析、行业动态追踪与用户需求挖掘能力，可协同多方资源推进内容与方案落地，具备较强的策划力、逻辑力与协调能力。\n\n数据与用户运营：具备数据收集、用户反馈分析与复盘优化意识，能通过数据表现调整运营方向，熟悉基础数据挖掘与资料整合方法，注重以用户思维驱动运营策略优化，支撑业务落地与效果提升。\n\n实践背景：湖南大学新闻学本科背景，拥有媒体平台方运营实习、主流媒体记者实习、校园官方宣传与深度调研项目经验，具备扎实文案能力、用户洞察力与执行力，精准匹配市场营销、内容运营、内容企划类岗位核心需求。",
       expTitle: "Professional Journey",
       expSubtitle: "从媒体实习的敏锐观察到在校研究的深耕细作，在实践中重构真实叙事。",
       projectsTitle: "Archive of Narrative Projects",
@@ -977,7 +978,7 @@ export default function App() {
     };
 
     try {
-      const saved = localStorage.getItem('yanyuxin_page_content');
+      const saved = localStorage.getItem('yanyuxin_page_content_v2');
       if (saved) {
         return { ...defaults, ...JSON.parse(saved) };
       }
@@ -989,7 +990,7 @@ export default function App() {
 
   // Auto-save page content
   useEffect(() => {
-    localStorage.setItem('yanyuxin_page_content', JSON.stringify(pageContent));
+    localStorage.setItem('yanyuxin_page_content_v2', JSON.stringify(pageContent));
   }, [pageContent]);
 
   const updatePageContent = (key: string, value: string) => {
@@ -1025,7 +1026,7 @@ export default function App() {
           <div className="flex gap-8">
             <a href="#experience" className="text-[10px] uppercase tracking-[0.4em] font-bold text-text-muted hover:text-primary transition-colors">Exps</a>
             <a href="#portfolio" className="text-[10px] uppercase tracking-[0.4em] font-bold text-text-muted hover:text-primary transition-colors">Works</a>
-            <a href="#diy-playground" className="text-[10px] uppercase tracking-[0.4em] font-bold text-text-muted hover:text-primary transition-colors">Life</a>
+            <a href="#life-slices" className="text-[10px] uppercase tracking-[0.4em] font-bold text-text-muted hover:text-primary transition-colors">Life</a>
           </div>
         </div>
       </nav>
@@ -1357,13 +1358,36 @@ export default function App() {
               isCreatorMode={isCreatorMode}
               className="text-5xl leading-tight"
             />
-            <EditableText 
-              tag="p"
-              text={pageContent.aboutQuote}
-              onSave={(val) => updatePageContent('aboutQuote', val)}
-              isCreatorMode={isCreatorMode}
-              className="text-lg text-text-muted/80 leading-relaxed italic border-l-4 border-primary/20 pl-6"
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {isCreatorMode ? (
+                <EditableText 
+                  tag="div"
+                  text={pageContent.aboutQuote}
+                  onSave={(val) => updatePageContent('aboutQuote', val)}
+                  isCreatorMode={true}
+                  className="col-span-2 text-lg text-text-muted/80 leading-relaxed whitespace-pre-wrap text-justify border-l-4 border-primary/20 pl-6"
+                />
+              ) : (
+                pageContent.aboutQuote.split('\n\n').map((block: string, idx: number) => {
+                  const [title, ...rest] = block.split('：');
+                  const content = rest.join('：');
+                  return (
+                    <div 
+                      key={idx} 
+                      className="p-6 rounded-xl border border-primary/10 bg-white/40 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 group"
+                    >
+                      <h4 className="text-sm font-bold text-primary uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-125 transition-transform" />
+                        {title}
+                      </h4>
+                      <p className="text-[13px] leading-relaxed text-text-muted/90 font-medium">
+                        {content}
+                      </p>
+                    </div>
+                  );
+                })
+              )}
+            </div>
           </div>
           <div className="bg-[#879EB3]/80 backdrop-blur-sm p-12 space-y-10 shadow-lg rotate-1 relative border-l-4 border-[#546e7a]">
             {/* Sticky Note Pin */}
@@ -1460,14 +1484,31 @@ export default function App() {
               isCreatorMode={isCreatorMode}
               className="max-w-xl text-text-muted font-serif italic text-xl leading-relaxed"
             />
+            {/* Hint for sticker interaction */}
+            {!isCreatorMode && (
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="text-[10px] font-bold text-primary/40 tracking-[0.2em] uppercase flex items-center gap-2"
+              >
+                <MousePointerClick className="w-3 h-3" />
+                点击贴纸可阅览详情
+              </motion.p>
+            )}
           </div>
 
           <div className="space-y-64">
             {/* Group 01: Campus Experience */}
             <div className="space-y-32">
-              <div className="flex flex-col items-center mb-24">
-                <div className="bg-primary text-white px-6 py-2 rounded-full text-xs font-black tracking-widest shadow-xl shadow-primary/20 mb-4">一、在校经历</div>
-                <div className="text-[10px] uppercase tracking-[0.4em] text-text-muted/30">CAMPUS TRAJECTORY</div>
+              <div className="flex flex-col items-center mb-20 relative">
+                <div className="relative flex items-center justify-center">
+                  <span className="text-[140px] font-black text-primary/5 leading-none select-none">01</span>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-2xl font-black tracking-[0.4em] text-primary translate-y-4">在校经历</span>
+                  </div>
+                </div>
+                <div className="mt-2 text-[10px] uppercase tracking-[0.6em] text-text-muted/30 font-bold">Campus Trajectory</div>
               </div>
               
               <div className="flex flex-col gap-y-64">
@@ -1489,9 +1530,14 @@ export default function App() {
 
             {/* Group 02: Internship Experience */}
             <div className="space-y-32">
-              <div className="flex flex-col items-center mb-24">
-                <div className="bg-primary text-white px-6 py-2 rounded-full text-xs font-black tracking-widest shadow-xl shadow-primary/20 mb-4">二、实习经历</div>
-                <div className="text-[10px] uppercase tracking-[0.4em] text-text-muted/30">INTERNSHIP TRAJECTORY</div>
+              <div className="flex flex-col items-center mb-20 relative">
+                <div className="relative flex items-center justify-center">
+                  <span className="text-[140px] font-black text-primary/5 leading-none select-none">02</span>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-2xl font-black tracking-[0.4em] text-primary translate-y-4">实习经历</span>
+                  </div>
+                </div>
+                <div className="mt-2 text-[10px] uppercase tracking-[0.6em] text-text-muted/30 font-bold">Internship Trajectory</div>
               </div>
               
               <div className="flex flex-col gap-y-64">
@@ -1632,6 +1678,47 @@ export default function App() {
             </motion.div>
           ))}
           </AnimatePresence>
+        </div>
+
+        {/* Section Transition / 生活切片过渡 - Moved here */}
+        <div id="life-slices" className="mt-40 space-y-24">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="space-y-8"
+          >
+            <p className="text-text-muted/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-serif italic border-x border-primary/10 px-8 py-2 text-center">
+              “每个人都是一片繁茂的森林，有不同的人格切面，如果你还想了解生活中的我，就请继续往下看吧，下面是我的生活切片。”
+            </p>
+            <div className="flex justify-center items-center gap-4">
+              <div className="w-12 h-px bg-primary/20" />
+              <div className="w-2 h-2 rounded-full bg-primary/20" />
+              <div className="w-12 h-px bg-primary/20" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5 }}
+            className="relative flex flex-col items-center"
+          >
+            <div className="absolute -top-12 text-[14vw] font-black text-primary/5 uppercase tracking-tighter leading-none select-none whitespace-nowrap">
+              Vibrant Life
+            </div>
+            <h2 className="text-5xl md:text-8xl font-black text-primary uppercase tracking-tight leading-none relative z-10 text-center">
+              Slices of <br /> My Life
+            </h2>
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: "100px" }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="h-2 bg-primary mt-8"
+            />
+          </motion.div>
         </div>
       </section>
 
